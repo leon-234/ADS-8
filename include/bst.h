@@ -6,13 +6,13 @@
 
 template<typename T>
 class BST {
-  private:
+   private:
     struct Node {
         T key;
         int freq;
         Node* left;
         Node* right;
-        Node(const T& value) {
+        explicit Node(const T& value) {
             key = value;
             freq = 1;
             left = nullptr;
@@ -41,17 +41,17 @@ class BST {
         return node;
     }
 
-    bool search(Node* node, const T& value) const {
-        if (!node) return false;
+    int search(Node* node, const T& value) const {
+        if (!node) return 0;
         if (value == node->key)
-            return true;
+            return node->freq;
         if (value < node->key)
             return search(node->left, value);
         return search(node->right, value);
     }
 
     int depth(Node* node) const {
-        if (!node) return 0;
+        if (!node) return -1;
         int l = depth(node->left);
         int r = depth(node->right);
         return 1 + std::max(l, r);
@@ -65,8 +65,7 @@ class BST {
         collect(node->right, data);
     }
 
-  public:
-
+   public:
     BST() {
         root = nullptr;
     }
@@ -79,7 +78,7 @@ class BST {
         root = insert(root, value);
     }
 
-    bool search(const T& value) const {
+    int search(const T& value) const {
         return search(root, value);
     }
 

@@ -6,7 +6,7 @@
 
 template<typename T>
 class BST {
-   private:
+ private:
     struct Node {
         T key;
         int freq;
@@ -65,7 +65,7 @@ class BST {
         collect(node->right, data);
     }
 
-   public:
+ public:
     BST() {
         root = nullptr;
     }
